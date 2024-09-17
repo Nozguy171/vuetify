@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <template>
   <div>
     <table class="table table-bordered">
@@ -191,68 +190,3 @@ table {
   background-color: rgba(0, 0, 0, 0.5);
 }
 </style>
-=======
-<template>
-    <div>
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th scope="col" class="titulos">Título</th>
-            <th scope="col" class="titulos">Calificación</th>
-            <th scope="col" class="titulos">IMDB</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-if="pel.length === 0">
-            <td colspan="3">No hay películas disponibles.</td>
-          </tr>
-          <tr v-for="pelicula in pel" :key="pelicula.id" @click="seleccionarPelicula(pelicula.movie)">
-            <td class="fondo">{{ pelicula.movie }}</td>
-            <td class="texto">{{ pelicula.rating }}</td>
-            <td class="fondo">  <a :href="pelicula.imdb_url" target="_blank">{{ pelicula.imdb_url }}</a> </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </template>
-  
-  <script>
-  export default {
-    name: 'TablaPelis',
-    props: {
-      pel: {
-        type: Array,
-        required: true
-      }
-    },
-    methods: {
-      seleccionarPelicula(nombre) {
-        this.$emit('pelicula-seleccionada', nombre); 
-      }
-    }
-  }
-  </script>
-  
-  <style scoped>
-  table {
-    cursor: pointer; 
-  }
-  
-  .titulos {
-    background-color: red;
-    text-align: center;
-    color: white;
-  }
-  
-  .texto {
-    text-align: right;
-    background-color: black;
-    color: white;
-  }
-  
-  .fondo {
-    background-color: black;
-    color: white;
-  }
-  </style>
->>>>>>> 431746fb0d5d8dfed2fdb64bc4df0ccf930a72e6
