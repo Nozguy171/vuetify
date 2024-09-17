@@ -12,12 +12,10 @@
         Regresar a la página principal
       </v-btn>
     </div>
+    <h2 v-if="seleccionado"> Película Seleccionada: {{ seleccionado.movie }}</h2>
 
-    <!-- Componente para mostrar el nombre de la película seleccionada -->
-    <DetallePelicula :nombre="peliculaSeleccionada" />
-
-    <TablaPelis :pel="pel" @pelicula-seleccionada="peliculaSeleccionada = $event" />
-
+    <!-- Asegúrate de pasar 'pel' como 'peliculas' -->
+    <TablaPelis :peliculas="pel" @nombre_Pelicula2="peliculaSeleccionada" />
   </v-container>
 </template>
 
@@ -25,12 +23,14 @@
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import TablaPelis from "../components/tabla.vue";
-import DetallePelicula from "../components/nombrePeli.vue"; // Importar el componente
 
 const router = useRouter();
 const pel = ref([]);
-const peliculaSeleccionada = ref('');
-const dialog = ref(false);
+const seleccionado = ref(null);
+
+function peliculaSeleccionada(payload) {
+  seleccionado.value = payload; // Cambié 'payload' por 'pelicula'
+}
 
 onMounted(async () => {
   try {
