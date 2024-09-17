@@ -35,7 +35,7 @@
       </tbody>
     </table>
 
-    <!-- Diálogo para editar -->
+    <!-- Diálogo para editar cambio -->
     <v-dialog v-model="dialogEdit" width="auto">
       <v-card max-width="400">
         <v-card-title>Editando película: {{ selectedMovie.movie }}</v-card-title>
