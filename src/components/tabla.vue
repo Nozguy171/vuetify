@@ -11,7 +11,7 @@
       </thead>
       <tbody>
         <tr v-if="peliculas.length === 0">
-          <td colspan="4">No hay películas disponibles.</td> <!-- Cambié a colspan="4" -->
+          <td colspan="4">No hay películas disponibles.</td>
         </tr>
         <tr v-for="pelicula in peliculas" :key="pelicula.id">
           <td class="fondo" @click="nombre_Pelicula(pelicula)">{{ pelicula.movie }}</td>
@@ -35,9 +35,9 @@
       </tbody>
     </table>
 
-    <!-- Diálogo para editar cambio -->
+
     <v-dialog v-model="dialogEdit" width="auto">
-      <v-card max-width="400">
+      <v-card max-width="800">
         <v-card-title>Editando película: {{ selectedMovie.movie }}</v-card-title>
         <v-card-text>¿Está seguro de que desea editar esta película? 
 
@@ -82,9 +82,8 @@
       </v-card>
     </v-dialog>
 
-    <!-- Diálogo para eliminar -->
     <v-dialog v-model="dialogDelete" width="auto">
-      <v-card max-width="400">
+      <v-card max-width="800">
         <v-card-title>Eliminando película: {{ selectedMovie?.movie }}</v-card-title>
         <v-card-text>¿Está seguro de que desea eliminar esta película?</v-card-text>
         <template v-slot:actions>
@@ -99,7 +98,6 @@
 </template>
 
 <script setup>
-// Importando las propiedades y eventos
 import { defineProps, defineEmits, ref } from 'vue';
 
 const dialogEdit = ref(false);
@@ -122,22 +120,19 @@ function nombre_Pelicula(pelicula) {
   emits('nombre_Pelicula2', payload);
 }
 
-// Función para activar el diálogo correspondiente
 const activarAjustes = (action, pelicula) => {
-  selectedMovie.value = pelicula; // Guardar la película seleccionada
+  selectedMovie.value = pelicula; 
   selectedMovie.value.movies = selectedMovie.value.movie
   selectedMovie.value.rating1 = selectedMovie.value.rating
   selectedMovie.value.imdb_url1 = selectedMovie.value.imdb_url
   if (action === 'edit') {
-    dialogEdit.value = true; // Abrir diálogo de edición
+    dialogEdit.value = true; 
   } else if (action === 'delete') {
-    dialogDelete.value = true; // Abrir diálogo de eliminación
+    dialogDelete.value = true; 
   }
 };
 
-// Funciones para confirmar acciones
 const confirmEdit = () => {
-  // Lógica para editar la película
   console.log(`Editando la película: ${selectedMovie.value.movie}`);
   if(selectedMovie.value.movies!=null){
   selectedMovie.value.movie = selectedMovie.value.movies
@@ -149,14 +144,13 @@ const confirmEdit = () => {
     selectedMovie.value.rating = selectedMovie.value.rating1
     }
     nombre_Pelicula(selectedMovie.value)
-  dialogEdit.value = false; // Cerrar diálogo
+  dialogEdit.value = false; 
 };
 
 const confirmDelete = () => {
-  // Lógica para eliminar la película
   console.log(`Eliminando la película: ${selectedMovie.value.movie}`);
   
-  dialogDelete.value = false; // Cerrar diálogo
+  dialogDelete.value = false;
 };
 </script>
 
@@ -166,7 +160,7 @@ table {
 }
 
 .titulos {
-  background-color: red;
+  background-color: blue;
   text-align: center;
   color: white;
 }
@@ -180,13 +174,5 @@ table {
 .fondo {
   background-color: black;
   color: white;
-}
-.overlay {
-  position: center;
-  top: 0;
-  left: 0;
-  width: 30%;
-  height: 30%;
-  background-color: rgba(0, 0, 0, 0.5);
 }
 </style>
