@@ -6,9 +6,9 @@
         indeterminate
     ></v-progress-linear>
 
-    <div>
+    <div v-if="!cargando">
         <img 
-            v-if="!cargando && !error" 
+            v-if="!error" 
             :src="imagenUrl" 
             style="border:5px solid red;" 
             @load="imagenCargada" 
@@ -19,7 +19,7 @@
             <p>Error al cargar la imagen. Por favor, inténtalo de nuevo.</p>
         </div>
 
-        <v-row justify="center" v-if="!cargando && !error">
+        <v-row justify="center" v-if="!error">
             <v-col cols="auto">
                 <v-btn
                     height="72"
@@ -40,30 +40,28 @@ import { ref } from "vue";
 
 const imagenUrl = ref("https://picsum.photos/200/300");
 const loading = ref(false);
-const cargando = ref(true);
+const cargando = ref(true); 
 const error = ref(false);
 
 function cambiarImagen() {
     if (loading.value) return;
 
-    loading.value = true;
-    cargando.value = true;
-    error.value = false;
+    loading.value = true; 
+    error.value = false; 
 
     const randomParam = Date.now();
     imagenUrl.value = `https://picsum.photos/200/300?random=${randomParam}`;
 }
 
 function imagenCargada() {
-    loading.value = false;
-    cargando.value = false;
+    loading.value = false; 
 }
 
 function imagenError() {
-    loading.value = false;
-    cargando.value = false;
-    error.value = true;
+    loading.value = false; 
+    error.value = true; 
 }
+
 
 setTimeout(() => {
     cargando.value = false;

@@ -11,8 +11,6 @@
       <div v-if="cargado && error" style="color: red; text-align: center;">
         <p>Error al cargar los datos. Por favor, inténtalo de nuevo.</p>
       </div>
-
-      <!-- Mostrar tabla solo si no hay errores y los datos están cargados -->
       <v-container v-if="cargado && !error"> 
         <h2 v-if="seleccionado">Película Seleccionada: {{ seleccionado.movie }}</h2>
 
